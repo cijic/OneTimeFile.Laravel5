@@ -65,7 +65,7 @@ class ControllerUpload extends OneTimeFileBaseController
      */
     private function processPath()
     {
-        $path = $_SERVER['DOCUMENT_ROOT'] . '/../';
+        $path = $_SERVER['DOCUMENT_ROOT'] . '/../../';
         $path .= '/uploads/' . date('Ymd') . '/';
 
         if (!file_exists($path) && !mkdir($path)) {
