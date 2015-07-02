@@ -1,4 +1,6 @@
-<?php namespace App\Console\Commands;
+<?php
+
+namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use Symfony\Component\Console\Input\InputOption;
@@ -6,41 +8,41 @@ use Symfony\Component\Console\Input\InputArgument;
 use App\Http\Controllers\ControllerRoute;
 use App\Models\ModelRoute;
 
-class RemoveLimitated extends Command {
+class RemoveLimitated extends Command
+{
+    /**
+     * The console command name.
+     *
+     * @var string
+     */
+    protected $name = 'service:remove_delayed';
 
-	/**
-	 * The console command name.
-	 *
-	 * @var string
-	 */
-	protected $name = 'remove_limitated';
+    /**
+     * The console command description.
+     *
+     * @var string
+     */
+    protected $description = 'Remove limitated records.';
 
-	/**
-	 * The console command description.
-	 *
-	 * @var string
-	 */
-	protected $description = 'Remove limitated records.';
+    /**
+     * Create a new command instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        parent::__construct();
+    }
 
-	/**
-	 * Create a new command instance.
-	 *
-	 * @return void
-	 */
-	public function __construct()
-	{
-		parent::__construct();
-	}
-
-	/**
-	 * Execute the console command.
-	 *
-	 * @return mixed
-	 */
-	public function fire()
-	{
-		$this->cliRemoveLimitated();
-	}
+    /**
+     * Execute the console command.
+     *
+     * @return mixed
+     */
+    public function fire()
+    {
+        $this->cliRemoveLimitated();
+    }
 
     /**
      * Remove limitated records which are old, and corresponding row in DB.
