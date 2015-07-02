@@ -26,7 +26,7 @@ return [
 	|
 	*/
 
-	'url' => 'http://onetimefile.org',
+	'url' => 'http://laravel5.onetimefile.local/',
 
 	/*
 	|--------------------------------------------------------------------------
