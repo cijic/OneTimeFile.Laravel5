@@ -24,7 +24,7 @@ class ControllerUpload extends OneTimeFileBaseController
     {
         $params = [];
         $params['title'] = 'Upload';
-        $banListContains = $this->model->banlistContains($_SERVER['REMOTE_ADDR']);
+        $banListContains = $this->model->banlistContains(Request::getClientIp());
 
         if ($banListContains) {
             $params['errorMessage'] = 'IP limits for uploading. Please, return after 1 hour.';
@@ -65,7 +65,7 @@ class ControllerUpload extends OneTimeFileBaseController
      */
     private function processPath()
     {
-        $path = $_SERVER['DOCUMENT_ROOT'] . '/../../';
+        $path = public_path() . '/../../';
         $path .= '/uploads/' . date('Ymd') . '/';
 
         if (!file_exists($path) && !mkdir($path)) {
@@ -93,7 +93,7 @@ class ControllerUpload extends OneTimeFileBaseController
      */
     public function uploadFile()
     {
-        if ($this->model->banlistContains($_SERVER['REMOTE_ADDR'])) {
+        if ($this->model->banlistContains(Request::getClientIp())) {
             return $this->jsonResponse(['result' => '']);
         }
 
@@ -136,7 +136,7 @@ class ControllerUpload extends OneTimeFileBaseController
      */
     public function checkBanlistContains()
     {
-        return $this->model->banlistContains($_SERVER['REMOTE_ADDR']) ?
+        return $this->model->banlistContains(Request::getClientIp()) ?
             $this->jsonResponse(['result' => 'true']) :
             $this->jsonResponse(['result' => 'false']);
     }

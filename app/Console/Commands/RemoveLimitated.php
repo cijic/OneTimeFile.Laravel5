@@ -15,14 +15,14 @@ class RemoveLimitated extends Command
      *
      * @var string
      */
-    protected $name = 'service:remove_delayed';
+    protected $signature = 'service:remove_delayed';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Remove limitated records.';
+    protected $description = 'Remove delayed records.';
 
     /**
      * Create a new command instance.
@@ -39,15 +39,15 @@ class RemoveLimitated extends Command
      *
      * @return mixed
      */
-    public function fire()
+    public function handle()
     {
-        $this->cliRemoveLimitated();
+        $this->cliRemoveDelayed();
     }
 
     /**
-     * Remove limitated records which are old, and corresponding row in DB.
+     * Remove old records and corresponding rows in DB.
      */
-    protected function cliRemoveLimitated()
+    protected function cliRemoveDelayed()
     {
         $model = new ModelRoute();
         $this->info('Started CLI mode...');
